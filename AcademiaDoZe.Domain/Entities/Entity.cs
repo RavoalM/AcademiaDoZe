@@ -1,5 +1,4 @@
 ﻿//Alvaro Machado Feltrin
-
 namespace AcademiaDoZe.Domain.Entities;
 
 public abstract class Entity

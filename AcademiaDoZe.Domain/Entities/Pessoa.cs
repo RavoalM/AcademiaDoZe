@@ -3,28 +3,29 @@ using AcademiaDoZe.Domain.ValueObjects;
 
 namespace AcademiaDoZe.Domain.Entities;
 
-public class Pessoa : Entity
+public abstract class Pessoa : Entity
 {
-    public string Nome { get; private set; }
-    public Cpf Cpf { get; private set; }
-    public Telefone NumeroCelular { get; private set; }
-    public Email Email { get; private set; }
-    public DateOnly DataNascimento { get; private set; }
-    public Endereco Endereco { get; private set; }
-    public Senha Senha { get; private set; }
-    public Arquivo Foto { get; private set; }
+    public string Nome { get; protected set; }
+    public Cpf Cpf { get; protected set; }
+    public DateOnly DataNascimento { get; protected set; }
+    public Telefone Telefone { get; protected set; }
+    public Email Email { get; protected set; }
+    public Endereco Endereco { get; protected set; }
+    public Senha Senha { get; protected set; }
+    public Arquivo Foto { get; protected set; }
+    protected Pessoa(int id, string nome, Cpf cpf, DateOnly dataNascimento, Telefone telefone, Email email,
 
-    protected Pessoa(int id, string nome, Cpf cpf, Telefone telefone, Email email, DateOnly dataNascimento, Endereco endereco, Senha senha, Arquivo foto)
+    Endereco endereco, Senha senha,
+    Arquivo foto) : base(id)
+
     {
-        Id = id;
         Nome = nome;
         Cpf = cpf;
-        NumeroCelular = telefone;
-        Email = email;
         DataNascimento = dataNascimento;
+        Telefone = telefone;
+        Email = email;
         Endereco = endereco;
         Senha = senha;
         Foto = foto;
     }
-
 }

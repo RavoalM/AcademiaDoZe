@@ -1,17 +1,35 @@
 ﻿//Alvaro Machado Feltrin
+using AcademiaDoZe.Domain.Common;
 
 namespace AcademiaDoZe.Domain.Entities;
 
 public class AcessoColaborador : Entity
 {
-    public int IdColaborador { get; private set; }
-    public string Codigo { get; private set; }
-    public bool Ativo { get; private set; }
-
-    private AcessoColaborador(int Idcolaborador, string codigo)
+    public Colaborador Colaborador { get; private set; }
+    public DateTime DataHora { get; private set; }
+    private AcessoColaborador(int id, Colaborador colaborador, DateTime dataHora) : base(id)
     {
-        IdColaborador = Idcolaborador;
-        Codigo = codigo;
-        Ativo = true;
+        Colaborador = colaborador;
+        DataHora = dataHora;
     }
+
+    public static Result<AcessoColaborador> Criar(int id, Colaborador colaborador, DateTime dataHora)
+    {
+        var notifications = new List<Notification>();
+
+        if (colaborador == null)
+            notifications.Add(
+                new Notification("Colaborador", "COLABORADOR_OBRIGATORIO"));
+
+        if (dataHora == default)
+            notifications.Add(
+                new Notification("DataHora", "DATA_HORA_OBRIGATORIA"));
+
+        if (notifications.Count != 0)
+            return Result<AcessoColaborador>.Failure(notifications);
+
+        return Result<AcessoColaborador>.Success(
+            new AcessoColaborador(id, colaborador!, dataHora));
+    }
+
 }

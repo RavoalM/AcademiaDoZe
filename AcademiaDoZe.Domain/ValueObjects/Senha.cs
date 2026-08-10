@@ -1,12 +1,29 @@
 ﻿//Alvaro Machado Feltrin
+using AcademiaDoZe.Domain.Common;
+using AcademiaDoZe.Domain.Services;
 
 namespace AcademiaDoZe.Domain.ValueObjects;
 
-public class Senha
+public record Senha
 {
-    public string Password { get; } //validar como funfa na aula
-    private Senha(string senha)
+    public string Valor { get; }
+    private Senha(string valor)
     {
-        Password = senha;
+        Valor = valor;
     }
+
+    public static Result<Senha> Criar(string valor)
+    {
+        if (NormalizadoService.TextoVazioOuNulo(valor))
+            return Result<Senha>.Failure("Senha", "SENHA_OBRIGATORIA");
+
+        var senha = valor.Trim();
+
+        if (senha.Length < 6)
+            return Result<Senha>.Failure("Senha", "SENHA_MINIMA");
+
+        return Result<Senha>.Success(new Senha(senha));
+    }
+
+    public override string ToString() => Valor;
 }
