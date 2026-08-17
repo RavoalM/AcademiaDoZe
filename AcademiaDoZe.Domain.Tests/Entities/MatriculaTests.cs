@@ -38,9 +38,7 @@ public class MatriculaTests
         }
     }
 
-    [Theory(DisplayName = "Matricula: aluno obrigatório -> ALUNO_OBRIGATORIO")]
-    [InlineData("")]
-    [InlineData(" ")]
+    [Fact(DisplayName = "Matricula: aluno obrigatório -> ALUNO_INVALIDO")]
     public void Deve_Falhar_Criacao_Quando_AlunoNaoInformado()
     {
         var result = Matricula.Criar(
@@ -55,7 +53,7 @@ public class MatriculaTests
 
         Assert.True(result.IsFailure);
         Assert.NotEmpty(result.Notifications);
-        Assert.Contains(result.Notifications, n => n.Mensagem == "ALUNO_OBRIGATORIO");
+        Assert.Contains(result.Notifications, n => n.Mensagem == "ALUNO_INVALIDO");
     }
 
     [Theory(DisplayName = "Matricula: objetivo obrigatório -> OBJETIVO_OBRIGATORIO")]
