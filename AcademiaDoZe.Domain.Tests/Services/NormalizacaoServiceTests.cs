@@ -1,6 +1,4 @@
 ﻿//Alvaro Machado Feltrin
-
-//Alvaro Machado Feltrin
 using AcademiaDoZe.Domain.Services;
 
 namespace AcademiaDoZe.Domain.Tests.Services;
