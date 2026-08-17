@@ -27,11 +27,13 @@ public class AcessoColaboradorTests
             Assert.NotEmpty(result.Notifications);
             Assert.Contains(result.Notifications, n => n.Mensagem == "COLABORADOR_INVALIDO");
         }
+
         else
         {
             Assert.True(result.IsSuccess);
         }
     }
+
     [Theory(DisplayName = "AcessoColaborador: horario fora do intervalo -> DATAHORA_INTERVALO")]
     [InlineData(5, 59)]
     [InlineData(22, 1)]
@@ -40,10 +42,12 @@ public class AcessoColaboradorTests
         var colaborador = GetValidColaborador();
         var dataHora = DateTime.Today.AddHours(hour).AddMinutes(minute);
         var result = AcessoColaborador.Criar(1, colaborador, dataHora);
+
         Assert.True(result.IsFailure);
         Assert.NotEmpty(result.Notifications);
         Assert.Contains(result.Notifications, n => n.Mensagem == "DATA_HORA_INTERVALO_INVALIDO");
     }
+
     [Theory(DisplayName = "AcessoColaborador: criação bem-sucedida em horários permitidos")]
     [InlineData(10)]
     [InlineData(14)]
@@ -56,6 +60,7 @@ public class AcessoColaboradorTests
         Assert.Equal(colaborador.Id, result.Value!.ColaboradorId);
         Assert.Equal(dataHora, result.Value.DataHora);
     }
+
     [Theory(DisplayName = "AcessoColaborador: permite horários de borda 06:00 e 22:00")]
     [InlineData(6)]
     [InlineData(22)]

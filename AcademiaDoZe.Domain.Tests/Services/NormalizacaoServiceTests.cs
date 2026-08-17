@@ -15,8 +15,10 @@ public class NormalizacaoServiceTests
     public void Deve_TextoVazioOuNulo_RetornarEsperado(string? input, bool expected)
     {
         var result = NormalizacaoService.TextoVazioOuNulo(input);
+
         Assert.Equal(expected, result);
     }
+
     [Theory(DisplayName = "NormalizacaoService: LimparEspacos -> normaliza espaços")]
     [InlineData(null, "")]
     [InlineData("", "")]
@@ -27,6 +29,7 @@ public class NormalizacaoServiceTests
         var result = NormalizacaoService.LimparEspacos(input);
         Assert.Equal(expected, result);
     }
+
     [Theory(DisplayName = "NormalizacaoService: LimparTodosEspacos -> remove todos os espaços")]
     [InlineData(null, "")]
     [InlineData("", "")]
@@ -37,6 +40,7 @@ public class NormalizacaoServiceTests
         var result = NormalizacaoService.LimparTodosEspacos(input);
         Assert.Equal(expected, result);
     }
+
     [Theory(DisplayName = "NormalizacaoService: ParaMaiusculo -> converte para maiúsculo")]
     [InlineData(null, "")]
     [InlineData("", "")]
@@ -47,6 +51,7 @@ public class NormalizacaoServiceTests
         var result = NormalizacaoService.ParaMaiusculo(input);
         Assert.Equal(expected, result);
     }
+
     [Theory(DisplayName = "NormalizacaoService: LimparEDigitos -> mantém apenas dígitos")]
     [InlineData(null, "")]
     [InlineData("", "")]
