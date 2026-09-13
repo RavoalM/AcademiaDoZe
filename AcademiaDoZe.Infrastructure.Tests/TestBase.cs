@@ -24,7 +24,34 @@ public abstract class TestBase
     #region Geradores de dados aleatórios
     private static int _counter = 10000;
     protected static string GerarCep() => (80000000 + ((int)(DateTime.UtcNow.Ticks % 8000000)) + Interlocked.Increment(ref _counter)).ToString("D8")[..8];
-    protected static string GerarCpf() => (10000000000L + ((DateTime.UtcNow.Ticks % 8000000000L)) + Interlocked.Increment(ref _counter)).ToString("D11")[..11];
+    //protected static string GerarCpf() => (10000000000L + ((DateTime.UtcNow.Ticks % 8000000000L)) + Interlocked.Increment(ref _counter)).ToString("D11")[..11];
+    protected static string GerarCpf()
+    {
+        var random = new Random();
+        int[] multiplicador1 = [10, 9, 8, 7, 6, 5, 4, 3, 2];
+        int[] multiplicador2 = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
+
+        var semente = new int[9];
+        for (int i = 0; i < 9; i++)
+            semente[i] = random.Next(0, 10);
+
+        int soma = 0;
+        for (int i = 0; i < 9; i++)
+            soma += semente[i] * multiplicador1[i];
+
+        int resto = soma % 11;
+        int digito1 = resto < 2 ? 0 : 11 - resto;
+
+        soma = 0;
+        for (int i = 0; i < 9; i++)
+            soma += semente[i] * multiplicador2[i];
+        soma += digito1 * multiplicador2[9];
+
+        resto = soma % 11;
+        int digito2 = resto < 2 ? 0 : 11 - resto;
+
+        return string.Concat(semente) + digito1 + digito2;
+    }
     protected static string GerarEmail() => $"user_{Guid.NewGuid().ToString("N")[..8]}@test.com";
     protected static string GerarTelefone() => (49990000000L + ((DateTime.UtcNow.Ticks % 8000000000L)) + Interlocked.Increment(ref _counter)).ToString("D11")[..11];
     #endregion
