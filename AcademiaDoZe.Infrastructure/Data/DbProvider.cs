@@ -45,9 +45,11 @@ public static class DbProvider
         try
         {
             var command = connection.CreateCommand() ?? throw new InfrastructureException("FALHA_CRIAR_COMANDO", "Falha ao criar o comando no banco de dados.");
+           
             command.CommandText = commandText;
             command.CommandType = commandType;
             command.CommandTimeout = DefaultCommandTimeout;
+
             return command;
         }
         catch (Exception ex) when (ex is not InfrastructureException)

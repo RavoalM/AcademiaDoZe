@@ -1,4 +1,5 @@
 -- Alvaro Machado Feltrin
+
 IF OBJECT_ID(N'dbo.tb_logradouro', N'U') IS NULL
 BEGIN
 	CREATE TABLE tb_logradouro (

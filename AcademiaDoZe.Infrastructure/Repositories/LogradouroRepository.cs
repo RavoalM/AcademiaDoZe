@@ -86,16 +86,20 @@ public class LogradouroRepository : BaseRepository, ILogradouroRepository
         try
         {
             string query = FormatInsertQuery("INSERT INTO tb_logradouro (cep, nome, bairro, cidade, estado, pais) VALUES (@Cep, @Nome, @Bairro, @Cidade, @Estado, @Pais)");
+            
             await using var command = await CreateCommandAsync(query, cancellationToken);
+            
             command.AddParameter("@Cep", entity.Cep.Valor, DbType.String);
             command.AddParameter("@Nome", entity.Nome, DbType.String);
             command.AddParameter("@Bairro", entity.Bairro, DbType.String);
             command.AddParameter("@Cidade", entity.Cidade, DbType.String);
             command.AddParameter("@Estado", entity.Estado, DbType.String);
             command.AddParameter("@Pais", entity.Pais, DbType.String);
+            
             int id = await command.ExecuteScalarIdAsync("ERRO_ADICIONAR_LOGRADOURO", "Falha ao obter ID inserido para o logradouro.", cancellationToken);
             var idProperty = typeof(Entity).GetProperty("Id");
             idProperty?.SetValue(entity, id);
+            
             return entity;
         }
         catch (DbException ex)

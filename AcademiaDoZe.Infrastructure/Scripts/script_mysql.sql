@@ -1,4 +1,5 @@
 -- Alvaro Machado Feltrin
+
 CREATE TABLE IF NOT EXISTS tb_logradouro (
 	id_logradouro INT AUTO_INCREMENT NOT NULL,
 	cep VARCHAR(8) NOT NULL,
