@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaDoZe.Infrastructure
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaDoZe.Infrastructure.Tests", "AcademiaDoZe.Infrastructure.Tests\AcademiaDoZe.Infrastructure.Tests.csproj", "{AC9C0613-6064-4E6E-A272-5806597E737D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaDoZe.Application", "AcademiaDoZe.Application\AcademiaDoZe.Application.csproj", "{A6376E90-1FEB-4AC5-A4A1-EE0E214327CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{AC9C0613-6064-4E6E-A272-5806597E737D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC9C0613-6064-4E6E-A272-5806597E737D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC9C0613-6064-4E6E-A272-5806597E737D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6376E90-1FEB-4AC5-A4A1-EE0E214327CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6376E90-1FEB-4AC5-A4A1-EE0E214327CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6376E90-1FEB-4AC5-A4A1-EE0E214327CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6376E90-1FEB-4AC5-A4A1-EE0E214327CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
